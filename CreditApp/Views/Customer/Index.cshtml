@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CustomerDto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="my-4">
+                    <a asp-action="AddCustomer" class="btn btn-primary">Add New Customer</a>
+                </div>
+
+                <table class="table table-striped" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>PIN</th>
+                            <th>Full Name</th>
+                            <th>Date of Birth</th>
+                            <th>Phone Number</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.PIN</td>
+                                <td>@item.FullName</td>
+                                <td>@item.DateOfBirth.ToString("dd-MMMM-yyyy")</td>
+                                <td>@item.PhoneNumber1</td>
+                                <td>
+                                    <a asp-controller="Loan" asp-action="AddLoan" asp-route-customerId="@item.Id" class="btn btn-credit">Add Credit Request</a>
+                                    <a asp-controller="Customer" asp-action="CustomerDetails" asp-route-id="@item.Id" class="btn btn-info text-white">Info</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/dataTable.js"></script>
+}
+

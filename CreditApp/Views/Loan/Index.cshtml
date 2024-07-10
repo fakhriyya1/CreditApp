@@ -1,0 +1,65 @@
+﻿@model IEnumerable<LoanDetailDto>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <table class="table table-striped" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Loan Id</th>
+                            <th>Principal</th>
+                            <th>Currency</th>
+                            <th>Term</th>
+                            <th>Interest</th>
+                            <th>Loan</th>
+                            <th>Status</th>
+                            <th>Reason</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Principal</td>
+                                <td>@item.Currency.ToString()</td>
+                                <td>@item.TermInMonths</td>
+                                <td>@item.InterestRate</td>
+                                <td>@item.PurposeOfLoan</td>
+                                <td>
+                                    @if (item.LoanStatus.ToString() == "Approved")
+                                    {
+                                        <span class="badge bg-success">@item.LoanStatus.ToString()</span>
+                                    }
+                                    else if (item.LoanStatus.ToString() == "Pending")
+                                    {
+                                        <span class="badge bg-warning">@item.LoanStatus.ToString()</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">@item.LoanStatus.ToString()</span>
+                                    }
+                                </td>
+                                <td>@item.ReasonForDeclining</td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <a asp-controller="Loan" asp-action="ViewAmortization" asp-route-id="@item.Id" class="btn btn-success my-1" style="font-size:0.9rem">Amortization Schedule</a>
+                                        <a asp-controller="Guarantor" asp-action="AddGuarantor" asp-route-loanId="@item.Id" class="btn btn-primary my-1" style="font-size:0.9rem">Add Guarantor</a>
+                                        <a asp-controller="Loan" asp-action="DownloadPdf" asp-route-id="@item.Id" class="btn btn-warning my-1 text-white" style="font-size:0.9rem">Download Pdf</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/dataTable.js"></script>
+}

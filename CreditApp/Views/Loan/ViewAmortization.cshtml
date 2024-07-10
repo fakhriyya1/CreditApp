@@ -1,0 +1,59 @@
+﻿@using CreditEntityLayer.Enums
+@model LoanCalculationResult
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h2>Amortization Schedule</h2>
+                <p>Monthly Payment:  @FormatCurrency(Model.MonthlyPayment, Model.Currency)</p>
+
+                <table class="table">   
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Payment</th>
+                            <th>Principal</th>
+                            <th>Interest</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var entry in Model.Schedule)
+                        {
+                            <tr>
+                                <td>@entry.Month</td>
+                                <td>@FormatCurrency(entry.Payment, Model.Currency)</td>
+                                <td>@FormatCurrency(entry.Principal, Model.Currency)</td>
+                                <td>@FormatCurrency(entry.Interest, Model.Currency)</td>
+                                <td>@FormatCurrency(entry.Balance, Model.Currency)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <a asp-controller="Loan" asp-action="Index" class="btn btn-secondary">Back to Loans</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    public string FormatCurrency(decimal amount, Currency currency)
+    {
+        switch (currency)
+        {
+            case Currency.USD:
+                return amount.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+            case Currency.EUR:
+                return amount.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"));
+            case Currency.RUB:
+                return amount.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU"));
+            case Currency.AZN:
+                return amount.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("az-AZ"));
+            // Add more cases for other currencies
+            default:
+                return amount.ToString("C");
+        }
+    }
+}

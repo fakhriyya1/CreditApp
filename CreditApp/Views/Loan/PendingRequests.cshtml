@@ -1,0 +1,84 @@
+﻿@model IEnumerable<LoanDetailDto>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Loan Id</th>
+                            <th>Principal</th>
+                            <th>Currency</th>
+                            <th>Term in Months</th>
+                            <th>Interest</th>
+                            <th>Loan Purpose</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Principal</td>
+                                <td>@item.Currency.ToString()</td>
+                                <td>@item.TermInMonths</td>
+                                <td>@item.InterestRate</td>
+                                <td>@item.PurposeOfLoan</td>
+                                <td>
+                                    <span class="badge bg-warning">@item.LoanStatus.ToString()</span>
+                                </td>
+                                <td>
+                                    <a asp-controller="Loan" asp-action="Approve" asp-route-id="@item.Id" class="btn btn-success mx-1" style="font-size:0.9rem">Approve</a>
+                                    <button type="button" class="btn btn-danger mx-1" style="font-size:0.9rem" data-bs-toggle="modal" data-bs-target="#declineModal" data-id="@item.Id">Decline</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="declineModal" tabindex="-1" aria-labelledby="declineModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="declineModalLabel">Reason for Declining</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="declineForm" method="post" asp-action="Decline">
+                    <input type="hidden" id="id" name="Id" value="" />
+                    <div class="mb-3">
+                        <label for="reason" class="form-label">Reason</label>
+                        <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" form="declineForm" class="btn btn-danger">Decline</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var declineModal = document.getElementById('declineModal');
+            declineModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var loanId = button.getAttribute('data-id');
+                var modalLoanId = declineModal.querySelector('#id');
+                modalLoanId.value = loanId;
+            });
+        });
+    </script>
+    <script src="~/dataTable.js"></script>
+}

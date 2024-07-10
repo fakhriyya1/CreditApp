@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CreditApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/style.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CreditApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <section id="sidebar">
+        <a href="#" class="brand"><i class="fa-solid fa-money-check-dollar icon"></i>LoanApp</a>
+        <ul class="side-menu">
+            <li class="divider" data-text="main">Main</li>
+            <li>
+                <a asp-controller="Customer" asp-action="Index"><i class="fa-solid fa-user icon"></i> Customers </a>
+            </li>
+            <li>
+                <a asp-controller="Loan" asp-action="Index">
+                    <i class="fa-solid fa-landmark icon"></i>
+                    Loans
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Guarantor" asp-action="Index">
+                    <i class="fa-solid fa-person icon"></i>
+                    Guarantors
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Loan" asp-action="PendingRequests">
+                    <i class="fa-solid fa-person-circle-question icon"></i>
+                    Loan Requests
+                </a>
+            </li>
+        </ul>
+    </section>
+    <section id="content">
+        <nav>
+            <i class='bx bx-menu toggle-sidebar'></i>
+            <span class="divider"></span>
+        </nav>
+        <main>
+            @RenderBody()
+        </main>
+    </section>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="~/script.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

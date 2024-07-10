@@ -1,0 +1,126 @@
+﻿@model CustomerAddDto
+
+<h3 class="mb-3">Add Customer</h3>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body p-4">
+                <h5 class="mb-3">Profile Information</h5>
+                <form asp-action="AddCustomer" method="post" class="row">
+                    <div class="mb-3 col-md-6">
+                        <label asp-for="FullName" class="form-label">
+                            Full Name
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="FullName" type="text" class="form-control" placeholder="Name Surname Father's name">
+                        <span asp-validation-for="FullName" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label asp-for="PIN" class="form-label">
+                            PIN
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="PIN" type="text" class="form-control" placeholder="PIN">
+                        <span asp-validation-for="PIN" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label asp-for="CardNo" class="form-label">
+                            Card Number
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="CardNo" type="text" class="form-control" placeholder="Card Number">
+                        <span asp-validation-for="CardNo" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-12">
+                        <label asp-for="RegistrationAddress" class="form-label">
+                            Registration Address
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="RegistrationAddress" type="text" class="form-control" placeholder="Registration Address">
+                        <span asp-validation-for="RegistrationAddress" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-12">
+                        <label asp-for="CurrentAddress" class="form-label">
+                            Current Address
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="CurrentAddress" type="text" class="form-control" placeholder="Current Address">
+                        <span asp-validation-for="CurrentAddress" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-12">
+                        <label asp-for="DateOfBirth" class="form-label">
+                            Date of Birth
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="DateOfBirth" type="date" class="form-control" placeholder="Date of Birth">
+                        <span asp-validation-for="DateOfBirth" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label asp-for="PhoneNumber1" class="form-label">
+                            Phone Number
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="PhoneNumber1" type="tel" class="form-control" placeholder="Phone Number">
+                        <span asp-validation-for="PhoneNumber1" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label asp-for="PhoneNumber2" class="form-label">Phone Number (optional)</label>
+                        <input asp-for="PhoneNumber2" type="tel" class="form-control" placeholder="Phone Number">
+                    </div>
+
+                    <h5 class="my-3">Work Details</h5>
+                    <div class="mb-3 col-12">
+                        <label asp-for="Position" class="form-label">
+                            Position
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="Position" type="text" class="form-control" placeholder="Position">
+                        <span asp-validation-for="Position" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-12">
+                        <label asp-for="MonthlyIncome" class="form-label">
+                            Monthly Income
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="MonthlyIncome" type="number" class="form-control" placeholder="Monthly Income">
+                        <span asp-validation-for="MonthlyIncome" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label asp-for="ExperienceYears" class="form-label">
+                            Experience Years
+                        </label>
+                        <input asp-for="ExperienceYears" type="number" class="form-control" placeholder="Experience Years">
+                        <span asp-validation-for="ExperienceYears" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label asp-for="ExperienceMonths" class="form-label">
+                            Experience Months
+                        </label>
+                        <input asp-for="ExperienceMonths" type="number" class="form-control" placeholder="Experience Months">
+                        <span asp-validation-for="ExperienceMonths" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-12">
+                        <label asp-for="Region" class="form-label">
+                            Region
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="Region" type="text" class="form-control" placeholder="Region">
+                        <span asp-validation-for="Region" class="validation"></span>
+                    </div>
+                    <div class="mb-3 col-12">
+                        <label asp-for="BusinessAddress" class="form-label">
+                            Business Address
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="BusinessAddress" type="text" class="form-control" placeholder="Business Address">
+                        <span asp-validation-for="BusinessAddress" class="validation"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

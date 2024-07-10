@@ -1,0 +1,62 @@
+﻿@model LoanDetailAddDto
+
+<h3 class="mb-3">Add Loan Details</h3>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body p-4">
+                <h5 class="mb-3">Profile Information</h5>
+                <form asp-controller="Loan" asp-action="AddLoan" method="post">
+                    <input asp-for="CustomerId" hidden />
+                    <div class="row">
+                        <div class="mb-3 col-9">
+                            <label asp-for="Principal" class="form-label">
+                                Principal
+                                <i class="fa-solid fa-asterisk"></i>
+                            </label>
+                            <input asp-for="Principal" type="number" class="form-control" placeholder="Principal">
+                            <span asp-validation-for="Principal" class="validation"></span>
+                        </div>
+                        <div class="mb-3 col-3">
+                            <label asp-for="Currency" class="form-label">
+                                Select Currency
+                            </label>
+                            <select asp-for="Currency" class="form-select">
+                                @foreach (var item in ViewBag.CurrencyList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="TermInMonths" class="form-label">
+                            Term in Months
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="TermInMonths" type="number" class="form-control" placeholder="Term in Months">
+                        <span asp-validation-for="TermInMonths" class="validation"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="InterestRate" class="form-label">
+                            Interes tRate
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="InterestRate" type="number" class="form-control" placeholder="Interest Rate">
+                        <span asp-validation-for="InterestRate" class="validation"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PurposeOfLoan" class="form-label">
+                            Purpose of Loan
+                            <i class="fa-solid fa-asterisk"></i>
+                        </label>
+                        <input asp-for="PurposeOfLoan" type="text" class="form-control" placeholder="Purpose of Loan">
+                        <span asp-validation-for="PurposeOfLoan" class="validation"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
